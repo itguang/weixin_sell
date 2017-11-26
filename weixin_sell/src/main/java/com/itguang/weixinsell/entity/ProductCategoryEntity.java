@@ -5,6 +5,8 @@ import lombok.Data;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
@@ -15,7 +17,7 @@ import java.sql.Timestamp;
  **/
 @Entity
 @Data
-@Table(name = "product_category", schema = "sell", catalog = "")
+@Table(name = "product_category", schema = "sell")
 public class ProductCategoryEntity {
     private int categoryId;
     private String categoryName;
@@ -24,6 +26,7 @@ public class ProductCategoryEntity {
     private Timestamp updateTime;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     public int getCategoryId() {
         return categoryId;

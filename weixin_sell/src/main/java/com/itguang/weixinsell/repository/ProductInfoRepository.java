@@ -2,12 +2,14 @@ package com.itguang.weixinsell.repository;
 
 import com.itguang.weixinsell.entity.ProductInfoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ProductInfoRepository extends JpaRepository<ProductInfoEntity, String> {
+public interface ProductInfoRepository extends JpaRepository<ProductInfoEntity, String> ,JpaSpecificationExecutor<ProductInfoEntity>{
 
     List<ProductInfoEntity> findAllByProductName(String name);
 
@@ -64,6 +66,11 @@ public interface ProductInfoRepository extends JpaRepository<ProductInfoEntity, 
      */
     @Query(nativeQuery = true,value = "select count(*) from product_info")
     Integer getCount();
+
+
+    @Modifying
+    @Query("update ProductInfoEntity  o set o.productPrice =:price where o.productId=:id")
+    Integer updatePrice(@Param("id") String id,@Param("price") double price);
 
 
 
