@@ -228,6 +228,7 @@ public interface PagingAndSortingRepository<T, ID extends Serializable> extends 
 PageRequest 中方法如下:
 
 ![](images/13.png)
+
 有两个常用的构造方法:**需要注意的是,页数是从 0 开始的,即page=0 为第一页**
 
          PageRequest(int page, int size)
@@ -308,6 +309,7 @@ PageRequest还有一种构造方法 **PageRequest(int page, int size, Sort sort)
 我们可以传进去一个 Sort对象,进行排序
 
 Sort对象的构造方法接受一个 Order对象
+
 ![](images/15.png)
 
 Order对象是Sort 对象的一个内部类
@@ -497,6 +499,12 @@ ASC, DESC;
 ```
 
 ## JpaSpecificationExecutor 接口
+
+不属于Repository体系，实现一组 JPA Criteria 查询相关的方法 
+
+Specification：封装 JPA Criteria 查询条件。通常使用匿名内部类的方式来创建该接口的对象
+
+由于JpaSpecificationExecutor 并不继承repository 接口，所以它不能单独使用，只能和jpa Repository 一起用。
 
 ![](images/18.png)
 
