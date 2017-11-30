@@ -1,0 +1,56 @@
+首页地址: http://192.168.41.60/#/goods
+
+设置openid :document.cookie="openid=123"
+
+
+修改nginx:
+
+配置文件: vim /usr/local/nginx/conf/nginx.conf
+
+重启nginx: nginx -s reload 
+
+如果配置在微信,需要使用域名,开发环境中这样配置
+
+![](images/nginx1.png)
+
+意思是:nginx监听服务器80端口,
+
+* (前台页面) 当拦截到到 http://sell.com/index.html ,就转发请求到 /opt/data/wwwroot/sell 目录下
+
+* (后台接口) 当拦截到 http://sell.com/sell/* 时,就转发请求到 http://192.168.40.120:80/sell 
+
+
+另外需要在自己及其上更改host文件呢绒,配置 sell.com 域名,即: **服务器IP地址 sell.com**
+
+        192.168.41.60 sell.com
+
+
+        
+        
+2017-11-28   进度: 6-3
+
+进度:6-8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

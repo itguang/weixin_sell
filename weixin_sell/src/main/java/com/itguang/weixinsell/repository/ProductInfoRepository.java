@@ -15,6 +15,14 @@ public interface ProductInfoRepository extends JpaRepository<ProductInfoEntity, 
 
 
     /**
+     * 查询所有上架商品
+     * @param status 0正常/1下架
+     * @return
+     */
+    List<ProductInfoEntity> findByProductStatus(Integer status);
+
+
+    /**
      * 使用约定命名规则
      * @param name
      * @param price

@@ -1,6 +1,7 @@
 package com.itguang.weixinsell.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,14 +17,23 @@ import java.sql.Timestamp;
  * @create 2017-11-25 14:02
  **/
 @Entity
+@DynamicUpdate
 @Data
-@Table(name = "product_category", schema = "sell")
+@Table(name = "product_category")
 public class ProductCategoryEntity {
     private int categoryId;
     private String categoryName;
     private int categoryType;
     private Timestamp createTime;
     private Timestamp updateTime;
+
+    public ProductCategoryEntity() {
+    }
+
+    public ProductCategoryEntity(String categoryName, int categoryType) {
+        this.categoryName = categoryName;
+        this.categoryType = categoryType;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,16 +88,30 @@ public class ProductCategoryEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         ProductCategoryEntity that = (ProductCategoryEntity) o;
 
-        if (categoryId != that.categoryId) return false;
-        if (categoryType != that.categoryType) return false;
-        if (categoryName != null ? !categoryName.equals(that.categoryName) : that.categoryName != null) return false;
-        if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
-        if (updateTime != null ? !updateTime.equals(that.updateTime) : that.updateTime != null) return false;
+        if (categoryId != that.categoryId) {
+            return false;
+        }
+        if (categoryType != that.categoryType) {
+            return false;
+        }
+        if (categoryName != null ? !categoryName.equals(that.categoryName) : that.categoryName != null) {
+            return false;
+        }
+        if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) {
+            return false;
+        }
+        if (updateTime != null ? !updateTime.equals(that.updateTime) : that.updateTime != null) {
+            return false;
+        }
 
         return true;
     }

@@ -1,5 +1,7 @@
 package com.itguang.weixinsell.web;
 
+import com.itguang.weixinsell.enums.ResultEnum;
+import com.itguang.weixinsell.exception.SellException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,5 +21,12 @@ public class HelloController {
     public String hello(){
         log.info("hello...");
         return "hello...";
+    }
+    @RequestMapping("/test")
+    public String test(){
+
+        throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+
+
     }
 }

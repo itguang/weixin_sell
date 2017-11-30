@@ -1,6 +1,6 @@
 server:
   port: 80
-
+  context-path: /sell
 
 spring:
   datasource:
@@ -10,6 +10,13 @@ spring:
     url: jdbc:mysql://192.168.41.60/sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+  jackson:
+    default-property-inclusion: non_null # 全局jackson配置
+
+wechat:
+    mpAppId: wx1642c5a5400c82e2
+    mpAppSecret: b29ce763b313b406ff9d8f96cf3fb6e0
+
 
 
 

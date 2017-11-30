@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * @create 2017-11-25 14:02
  **/
 @Entity
-@Table(name = "seller_info", schema = "sell", catalog = "")
+@Table(name = "seller_info")
 public class SellerInfoEntity {
     private String id;
     private String username;

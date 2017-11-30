@@ -1,6 +1,7 @@
 package com.itguang.weixinsell.repository;
 
 import com.itguang.weixinsell.entity.ProductInfoEntity;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,15 @@ public class ProductInfoRepositoryTest {
 
     @Autowired
     private ProductInfoRepository infoRepository;
+
+
+    @Test
+    public void findByProductStatusTest() {
+        List<ProductInfoEntity> list = infoRepository.findByProductStatus(0);
+        Assert.assertNotEquals(0,list.size());
+
+    }
+
 
     @Test
     public void test1() {
@@ -116,10 +127,10 @@ public class ProductInfoRepositoryTest {
 
     //分页并排序
     @Test
-    public void testPageAndSort(){
+    public void testPageAndSort() {
 
         //按照价格降序
-        Sort.Order order = new Sort.Order(Sort.Direction.DESC,"productPrice");
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "productPrice");
         //按照库存量
         Sort.Order order1 = new Sort.Order(Sort.Direction.DESC, "productStock");
 
@@ -131,7 +142,7 @@ public class ProductInfoRepositoryTest {
 
         Sort sort = new Sort(orders);
 
-        Pageable pageable = new PageRequest(0, 5,sort);
+        Pageable pageable = new PageRequest(0, 5, sort);
 
         Page<ProductInfoEntity> page = infoRepository.findAll(pageable);
 
@@ -155,10 +166,10 @@ public class ProductInfoRepositoryTest {
 
 
     /**
-     *  findAll(Sort sort)
+     * findAll(Sort sort)
      */
     @Test
-    public void testJpa1(){
+    public void testJpa1() {
         //按价格降序
         Sort.Order order = new Sort.Order(Sort.Direction.DESC, "productPrice");
         Sort sort = new Sort(order);
@@ -170,14 +181,14 @@ public class ProductInfoRepositoryTest {
     }
 
     /**
-     *  flush
+     * flush
      */
     @Test
-    public void testJpa2(){
+    public void testJpa2() {
         ProductInfoEntity infoEntity = new ProductInfoEntity();
         infoEntity.setProductId("1234561");
         infoEntity.setProductName("大盘鸡");
-        infoEntity.setProductPrice(100.0);
+        infoEntity.setProductPrice(new BigDecimal(100.0));
 
         //保存并强制缓存与数据库同步
         ProductInfoEntity entity = infoRepository.save(infoEntity);
@@ -190,13 +201,13 @@ public class ProductInfoRepositoryTest {
 
 
     /**
-     *  JpaSpecificationExecutor
+     * JpaSpecificationExecutor
      */
     @Test
-    public void testJpaSpecificationExecutor(){
+    public void testJpaSpecificationExecutor() {
 
         //按照价格降序
-        Sort.Order order = new Sort.Order(Sort.Direction.DESC,"productPrice");
+        Sort.Order order = new Sort.Order(Sort.Direction.DESC, "productPrice");
         //按照库存量
         Sort.Order order1 = new Sort.Order(Sort.Direction.DESC, "productStock");
 
@@ -208,7 +219,7 @@ public class ProductInfoRepositoryTest {
 
         Sort sort = new Sort(orders);
 
-        Pageable pageable = new PageRequest(0, 5,sort);
+        Pageable pageable = new PageRequest(0, 5, sort);
 
         /**
          * root:就是我们要查询的类型 ProductInfoEntity
@@ -216,7 +227,7 @@ public class ProductInfoRepositoryTest {
          * cb: 构建Predicate(断言)
          *
          */
-        Specification<ProductInfoEntity> specification = new Specification<ProductInfoEntity>(){
+        Specification<ProductInfoEntity> specification = new Specification<ProductInfoEntity>() {
             @Override
             public Predicate toPredicate(Root<ProductInfoEntity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 Path path = root.get("productPrice");
@@ -227,7 +238,7 @@ public class ProductInfoRepositoryTest {
             }
         };
 
-        Page<ProductInfoEntity> page = infoRepository.findAll(specification,pageable);
+        Page<ProductInfoEntity> page = infoRepository.findAll(specification, pageable);
 //        Page<ProductInfoEntity> page = infoRepository.findAll(pageable);
 
         System.out.println("总页数=" + page.getTotalPages());
@@ -247,10 +258,6 @@ public class ProductInfoRepositoryTest {
 
 
     }
-
-
-
-
 
 
 }
