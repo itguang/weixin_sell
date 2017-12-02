@@ -39,10 +39,6 @@ public class CategoryServiceImplTest {
         Assert.assertNotEquals(0,list.size());
     }
 
-    @Test
-    public void save() throws Exception {
-        ProductCategoryEntity entity = categoryService.save(new ProductCategoryEntity("甜点", 18));
-        Assert.assertEquals(18,entity.getCategoryType());
-    }
+
 
 }

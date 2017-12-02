@@ -12,6 +12,7 @@ import com.itguang.weixinsell.service.impl.OrderServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.CollectionUtils;
@@ -87,6 +88,7 @@ public class BuyerOrderController {
 
     //订单列表
     @RequestMapping("list")
+//    @Cacheable(cacheNames = "order",key = "list")
     public ResultOV<List<OrderDTO>> orderList(@RequestParam("openid") String openid,
                                                        @RequestParam(value = "page",defaultValue = "1") Integer page,
                                                        @RequestParam(value = "size",defaultValue = "10") Integer pageSize){

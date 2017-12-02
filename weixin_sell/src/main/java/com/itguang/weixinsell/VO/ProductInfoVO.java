@@ -3,6 +3,7 @@ package com.itguang.weixinsell.VO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
  * @create 2017-11-27 13:37
  **/
 @Data
-public class ProductInfoVO {
+public class ProductInfoVO implements Serializable {
 
     @JsonProperty("id")
     private String productId;

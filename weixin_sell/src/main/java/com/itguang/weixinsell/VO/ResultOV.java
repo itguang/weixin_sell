@@ -3,6 +3,8 @@ package com.itguang.weixinsell.VO;
 import com.itguang.weixinsell.enums.ResultEnum;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * http请求返回的最外层对象
  *
@@ -11,7 +13,9 @@ import lombok.Data;
  **/
 @Data
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResultOV<T> {
+public class ResultOV<T> implements Serializable{
+
+
 
     /**
      * 状态码

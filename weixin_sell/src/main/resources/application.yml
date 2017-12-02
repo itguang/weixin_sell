@@ -12,13 +12,33 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null # 全局jackson配置
+  redis:
+    host: 192.168.41.60
+    port: 6379
+
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+##  path: /var/log/tomcat/
+#  file: /var/log/tomcat/sell.log
+#  level:
+#    com.imooc.LoggerTest: debug # 设置某个包下的日志级别
 
 wechat:
     mpAppId: wx1642c5a5400c82e2
     mpAppSecret: b29ce763b313b406ff9d8f96cf3fb6e0
 
+projectUrl:
+  domain: http://sell.com
 
+# 设置此包下的日志级别为 trace,(会打印mybatisSQL语句)
+logging:
+  level:
+    com.itguang.weixinsell.dao.mapper: trace
 
+# 配置mybatis的mapper.xml文件扫描路径
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
 
 
 
