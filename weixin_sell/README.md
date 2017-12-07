@@ -1,6 +1,10 @@
 
 # 微信点餐系统
 
+推荐一个Spring boot的教程,写的超棒: http://gitbook.cn/gitchat/column/59f5daa149cd4330613605ba
+
+
+
 **本项目配套视频**
 
 慕课网项目地址:http://coding.imooc.com/class/117.html
